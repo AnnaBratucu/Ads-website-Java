@@ -1,0 +1,286 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page import="controllers.UserDAO"%>
+<%@page import="controllers.Users"%>
+<%@page import="java.util.List"%>
+<%@ page pageEncoding="UTF-8" %>
+
+
+<%
+    String uri = request.getRequestURI();
+    String user1 = (String) request.getSession().getAttribute("USER");
+    List<Users> us = UserDAO.getInstance().getUser(user1);
+    for (Users u : us) {
+        String type = u.getType();
+    
+    String pageName = uri.substring(uri.lastIndexOf("/") + 1);
+//String pageName1 = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("?")+10);
+    //out.println(pageName);%>
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-card" id="myNavbar">
+        <a href="category.jsp" class="w3-bar-item w3-button w3-wide">ProADS</a>
+        <!-- Right-sided navbar links -->
+
+        <%if(pageName.equals("category.jsp")){%>
+        <div class="topnav w3-right w3-hide-small">
+            <a class="active w3-bar-item w3-button" href="category.jsp"><font color="black">Home</font>
+                <i class="fa fa-home" style="color:black"></i>
+            </a>
+            <a href="home.jsp" class="w3-bar-item w3-button"><font color="black">All Ads</font></a>
+            <div class="dropdown">
+                <button class="dropbtn w3-bar-item w3-button" ><font color="black">Categories</font>
+                    <i class="fa fa-caret-down" style="color:black"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="cars.jsp">Cars
+                        <i class="fa fa-car" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="books.jsp">Books
+                        <i class="fa fa-book" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="house.jsp">House and Garden
+                        <i class="fa fa-home" style="color:black;"></i>
+                    </a>
+                    <a href="electronics.jsp">Electronics
+                        <i class="fa fa-laptop" style="color:black; float:right;"></i>
+                    </a>
+                </div>
+            </div> 
+            <%if(type.equals("seller")){%>
+            <a href="addView.jsp" class="w3-bar-item w3-button"><font color="black">Add new ad</font></a>
+            <%}%>
+            <div class="dropdown">
+                <button class="dropbtn w3-bar-item w3-button" ><font color="black">My Account</font>
+                    <i class="fa fa-caret-down" style="color:black"></i>
+                </button>
+                <div class="dropdown-content">
+                    <%if(type.equals("seller")){%>
+                    <a href="myAds.jsp">My Ads</a>
+                    <%}%>
+                    <a href="messageList.jsp">Messages</a>
+                    <a href="premium.jsp">Go premium</a>
+                </div>
+            </div> 
+            <a href="LogoutController" class="w3-bar-item w3-button"><font color="black">Logout</font>
+                <i class="fa fa-sign-out" style="color:black"></i>
+            </a>
+            <div class="w3-bar-item w3-button"><font color="black">Hello, <%out.println(user1);%>!</font></div>
+
+        </div>
+        <%}%>
+
+
+        <%if(pageName.equals("home.jsp") || pageName.equals("search.jsp")){%>
+        <div class="topnav w3-right w3-hide-small">
+            <a class=" w3-bar-item w3-button" href="category.jsp"><font color="black">Home</font>
+                <i class="fa fa-home" style="color:black"></i>
+            </a>
+            <a href="home.jsp" class="active w3-bar-item w3-button"><font color="black">All Ads</font></a>
+            <div class="dropdown">
+                <button class="dropbtn w3-bar-item w3-button" ><font color="black">Categories</font>
+                    <i class="fa fa-caret-down" style="color:black;"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="cars.jsp">Cars
+                        <i class="fa fa-car" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="books.jsp">Books
+                        <i class="fa fa-book" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="house.jsp">House and Garden
+                        <i class="fa fa-home" style="color:black;"></i>
+                    </a>
+                    <a href="electronics.jsp">Electronics
+                        <i class="fa fa-laptop" style="color:black; float:right;"></i>
+                    </a>
+                </div>
+            </div>
+            <%if(type.equals("seller")){%>
+            <a href="addView.jsp" class="w3-bar-item w3-button"><font color="black">Add new ad</font></a>
+            <%}%>
+            <div class="dropdown">
+                <button class="dropbtn w3-bar-item w3-button" ><font color="black">My Account </font>
+                    <i class="fa fa-caret-down" style="color:black"></i>
+                </button>
+                <div class="dropdown-content">
+                    <%if(type.equals("seller")){%>
+                    <a href="myAds.jsp">My Ads</a>
+                    <%}%>
+                    <a href="messageList.jsp">Messages</a>
+                    <a href="premium.jsp">Go premium</a>
+                </div>
+            </div> 
+            <a href="LogoutController" class="w3-bar-item w3-button"><font color="black">Logout</font>
+                <i class="fa fa-sign-out" style="color:black"></i>
+            </a>
+            <div class="w3-bar-item w3-button"><font color="black">Hello, <%out.println(user1);%>!</font></div>
+
+        </div>
+        <%}%>
+
+        <%if(pageName.equals("addView.jsp")){%>
+        <div class="topnav w3-right w3-hide-small">
+            <a href="category.jsp" class="w3-bar-item w3-button"><font color="black">Home</font>
+                <i class="fa fa-home" style="color:black"></i>
+            </a>
+            <a href="home.jsp" class="w3-bar-item w3-button"><font color="black">All Ads</font></a>
+            <div class="dropdown">
+                <button class="dropbtn w3-bar-item w3-button" ><font color="black">Categories</font>
+                    <i class="fa fa-caret-down" style="color:black;"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="cars.jsp">Cars
+                        <i class="fa fa-car" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="books.jsp">Books
+                        <i class="fa fa-book" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="house.jsp">House and Garden
+                        <i class="fa fa-home" style="color:black;"></i>
+                    </a>
+                    <a href="electronics.jsp">Electronics
+                        <i class="fa fa-laptop" style="color:black; float:right;"></i>
+                    </a>
+                </div>
+            </div>
+            <%if(type.equals("seller")){%>
+            <a class="active w3-bar-item w3-button" href="addView.jsp"><font color="black">Add new ad</font></a>
+            <%}%>
+            <div class="dropdown">
+                <button class="dropbtn w3-bar-item w3-button"><font color="black">My Account </font>
+                    <i class="fa fa-caret-down" style="color:black"></i>
+                </button>
+                <div class="dropdown-content">
+                    <%if(type.equals("seller")){%>
+                    <a href="myAds.jsp">My Ads</a>
+                    <%}%>
+                    <a href="messageList.jsp">Messages</a>
+                    <a href="premium.jsp">Go premium</a>
+                </div>
+            </div> 
+            <a href="LogoutController" class="w3-bar-item w3-button"><font color="black">Logout</font>
+                <i class="fa fa-sign-out" style="color:black"></i>
+            </a>
+            <div class="w3-bar-item w3-button"><font color="black">Hello, <%out.println(user1);%>!</font></div>
+
+        </div>
+        <%}%>
+        
+        <%if( pageName.equals("cars.jsp") || pageName.equals("books.jsp") || pageName.equals("electronics.jsp") || pageName.equals("house.jsp")){%>
+        <div class="topnav w3-right w3-hide-small">
+            <a href="category.jsp" class="w3-bar-item w3-button"><font color="black">Home</font>
+                <i class="fa fa-home" style="color:black"></i>
+            </a>
+            <a href="home.jsp" class="w3-bar-item w3-button"><font color="black">All Ads</font></a>
+            <div class="dropdown">
+                <button class="dropbtn_active w3-bar-item w3-button" ><font color="black">Categories</font>
+                    <i class="fa fa-caret-down" style="color:black;"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="cars.jsp">Cars
+                        <i class="fa fa-car" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="books.jsp">Books
+                        <i class="fa fa-book" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="house.jsp">House and Garden
+                        <i class="fa fa-home" style="color:black;"></i>
+                    </a>
+                    <a href="electronics.jsp">Electronics
+                        <i class="fa fa-laptop" style="color:black; float:right;"></i>
+                    </a>
+                </div>
+            </div>
+            <%if(type.equals("seller")){%>
+            <a class="w3-bar-item w3-button" href="addView.jsp"><font color="black">Add new ad</font></a>
+            <%}%>
+            <div class="dropdown">
+                <button class="dropbtn w3-bar-item w3-button"><font color="black">My Account </font>
+                    <i class="fa fa-caret-down" style="color:black"></i>
+                </button>
+                <div class="dropdown-content">
+                    <%if(type.equals("seller")){%>
+                    <a href="myAds.jsp">My Ads</a>
+                    <%}%>
+                    <a href="messageList.jsp">Messages</a>
+                    <a href="premium.jsp">Go premium</a>
+                </div>
+            </div> 
+            <a href="LogoutController" class="w3-bar-item w3-button"><font color="black">Logout</font>
+                <i class="fa fa-sign-out" style="color:black"></i>
+            </a>
+            <div" class="w3-bar-item w3-button"><font color="black">Hello, <%out.println(user1);%>!</font></div>
+
+        </div>
+        <%}%>
+
+        <%if( pageName.equals("myAds.jsp") || pageName.equals("view.jsp") || pageName.equals("edit.jsp") || pageName.equals("messageList.jsp") || pageName.equals("message.jsp") || pageName.equals("messageFromList.jsp") || pageName.equals("premium.jsp") || pageName.equals("searchMe.jsp")){%>
+        <div class="topnav w3-right w3-hide-small">
+            <a href="category.jsp" class="w3-bar-item w3-button"><font color="black">Home</font>
+                <i class="fa fa-home" style="color:black"></i>
+            </a>
+            <a href="home.jsp" class="w3-bar-item w3-button"><font color="black">All Ads</font></a>
+            <div class="dropdown">
+                <button class="dropbtn w3-bar-item w3-button" ><font color="black">Categories</font>
+                    <i class="fa fa-caret-down" style="color:black;"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="cars.jsp">Cars
+                        <i class="fa fa-car" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="books.jsp">Books
+                        <i class="fa fa-book" style="color:black; float:right;"></i>
+                    </a>
+                    <a href="house.jsp">House and Garden
+                        <i class="fa fa-home" style="color:black;"></i>
+                    </a>
+                    <a href="electronics.jsp">Electronics
+                        <i class="fa fa-laptop" style="color:black; float:right;"></i>
+                    </a>
+                </div>
+            </div>
+            <%if(type.equals("seller")){%>
+            <a href="addView.jsp" class="w3-bar-item w3-button"><font color="black">Add new ad</font></a>
+            <%}%>
+            <div class="dropdown">
+                <button class="dropbtn_active w3-bar-item w3-button"><font color="black">My Account </font>
+                    <i class="fa fa-caret-down" style="color:black"></i>
+                </button>
+                <div class="dropdown-content">
+                    <%if(type.equals("seller")){%>
+                    <a href="myAds.jsp">My Ads</a>
+                    <%}%>
+                    <a href="messageList.jsp">Messages</a>
+                    <a href="premium.jsp">Go premium</a>
+                </div>
+            </div> 
+            <a href="LogoutController" class="w3-bar-item w3-button"><font color="black">Logout</font>
+                <i class="fa fa-sign-out" style="color:black"></i>
+            </a>
+            <div class="w3-bar-item w3-button"><font color="black">Hello, <%out.println(user1);%>!</font></div>
+
+        </div>
+        <%}}%>
+
+
+    </div>
+</div>
+
+
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+    <div class="w3-display-left w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off" style="padding:48px">
+        <span class="w3-hide-small">Looking for certain products or want to get rid of them?</span><br>
+        <span class="w3-large">Stop wasting time and try ProADS!</span>
+        <!--    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more and start today</a></p>-->
+    </div> 
+    <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+        <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+        <a href="https://www.instagram.com" target="_blank"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+        <a href="https://www.snapchat.com" target="_blank"><i class="fa fa-snapchat w3-hover-opacity"></i></a>
+        <a href="https://www.pinterest" target="_blank"><i class="fa fa-pinterest-p w3-hover-opacity"></i></a>
+        <a href="https://www.twitter.com" target="_blank"><i class="fa fa-twitter w3-hover-opacity"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
+    </div>
+</header>
+<div class="w3-container w3-light-grey" >
+    <br><br>
+

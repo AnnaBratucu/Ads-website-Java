@@ -1,0 +1,88 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16-May-2019, 16:31:07
+    Author     : ANA
+*/
+
+* {
+  box-sizing: border-box;
+  
+}
+
+
+/* Create three columns of equal width */
+.columns {
+  float: left;
+  width: 35%;
+  padding: 20px;
+  
+
+}
+
+.all{
+    margin-left: 410px;
+}
+
+/* Style the list */
+.price {
+  list-style-type: none;
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+ul {
+    background-color: white;
+    
+}
+
+/* Add shadows on hover */
+.price:hover {
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+
+/* Pricing header */
+.price .header {
+  background-color: #111;
+  color: white;
+  font-size: 25px;
+}
+
+/* List items */
+.price li {
+  border-bottom: 1px solid grey;
+  padding: 20px;
+  text-align: center;
+}
+
+
+/* Grey list item */
+.price .grey {
+  background-color: white;
+  font-size: 20px;
+}
+
+/* The "Sign Up" button */
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Change the width of the three columns to 100% 
+(to stack horizontally on small screens) */
+@media only screen and (max-width: 600px) {
+  .columns {
+    width: 100%;
+  }
+}
